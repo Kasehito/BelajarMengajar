@@ -13,47 +13,22 @@ import android.widget.TextView;
 import com.example.belajarmengajarreal.R;
 import com.example.belajarmengajarreal.activities.EditProfile;
 import com.example.belajarmengajarreal.activities.LoginPage;
+import com.example.belajarmengajarreal.utils.FirebaseClient;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 public class Profile extends Fragment {
 
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    private String mParam1;
-    private String mParam2;
-
-    private FirebaseAuth mAuth;
-    private FirebaseUser currentUser;
-
     private SharedPreferences.Editor editor;
-
     private Button btnLogout;
 
     public Profile() {
         // Required empty public constructor
     }
 
-    public static Profile newInstance(String param1, String param2) {
-        Profile fragment = new Profile();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-
-        mAuth = FirebaseAuth.getInstance();
-        currentUser = mAuth.getCurrentUser();
     }
 
     @Override
@@ -78,8 +53,8 @@ public class Profile extends Fragment {
         TextView greetingTextViewDown = view.findViewById(R.id.tvNameBawah);
 
         // Set the greeting text
-        if (currentUser != null) {
-            String displayName = currentUser.getDisplayName();
+        if (FirebaseClient.user() != null) {
+            String displayName = FirebaseClient.user().getDisplayName();
             if (displayName != null && !displayName.isEmpty()) {
                 greetingTextViewUp.setText("Halo, " + displayName+" 👋");
                 greetingTextViewDown.setText(displayName);
