@@ -1,15 +1,16 @@
 package com.example.belajarmengajarreal.fragment.home;
 
 import android.os.Bundle;
-
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.GridView;
+import android.widget.TextView;
 
 import com.example.belajarmengajarreal.R;
+import com.example.belajarmengajarreal.fragment.GridAdapter;
 import com.example.belajarmengajarreal.models.Materi;
 import com.example.belajarmengajarreal.utils.FirebaseClient;
 import com.google.android.gms.tasks.Task;
@@ -18,7 +19,6 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.List;
-
 
 public class Home extends Fragment {
 
@@ -35,10 +35,26 @@ public class Home extends Fragment {
     }
 
     @Override
-    public void onViewCreated(View view, Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+
+        // Inflate the layout for this fragment
+        View view = inflater.inflate(R.layout.fragment_home, container, false);
+
+        TextView tvName = view.findViewById(R.id.tvName);
         gridView = requireView().findViewById(R.id.gridView);
 
+        if (FirebaseClient.user() != null) {
+            String displayName = FirebaseClient.user().getDisplayName();
+            if (displayName != null && !displayName.isEmpty()) {
+                tvName.setText("Halo, " + displayName + " 👋");
+            } else {
+                tvName.setText("Halo, User 👋");
+            }
+        } else {
+            tvName.setText("Halo, User");
+        }
+      
         // Get list materi
         Task<QuerySnapshot> queries = FirebaseClient.data().collection("materi").get();
         queries.addOnCompleteListener(task -> {
@@ -64,6 +80,15 @@ public class Home extends Fragment {
                 ).show();
             }
         });
+
+        GridView gridView = view.findViewById(R.id.gridView);
+        String[] titles = {"Public Speaking", "Teaching Techniques", "Classroom Management", "Student Motivation"};
+        int[] images = {R.drawable.frame_1, R.drawable.frame_2, R.drawable.frame_3, R.drawable.jeki_sayang}; // Add your drawable images
+
+        GridAdapter gridAdapter = new GridAdapter(requireContext(), titles, images);
+        gridView.setAdapter(gridAdapter);
+
+        return view;
     }
 
     @Override
@@ -73,3 +98,4 @@ public class Home extends Fragment {
         return inflater.inflate(R.layout.fragment_home, container, false);
     }
 }
+

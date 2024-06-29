@@ -37,13 +37,13 @@
             android:text="@string/question"
             android:textSize="30sp"
             android:textStyle="bold"
-            android:textColor="?attr/colorPrimary"
-            />
+            android:textColor="?attr/colorPrimary"/>
 
         <GridView
             android:id="@+id/gridView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:backgroundTint="@color/white"
             android:numColumns="2"/>
 
     </LinearLayout>

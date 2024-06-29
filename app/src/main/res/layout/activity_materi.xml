@@ -35,7 +35,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
-        android:text="Protected dzaky asset"
+        android:text="Bagaimana cara berbicara di depan umum?"
         android:textColor="@color/black"
         android:textSize="20sp"
         android:textStyle="bold" />
@@ -44,14 +44,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textColor="@color/black"
-        android:text="Desiripsi : asdiadasdasdasdasdasdasdasdasd asdasdasdasdadsasasdasdasdasdasdasd asdasdasdasdasasdadsasdasdasdasdas dasdadasdasdasd"
+        android:text="Deskripsi : asdiadasdasdasdasdasdasdasdasd asdasdasdasdadsasasdasdasdasdasdasd asdasdasdasdasasdadsasdasdasdasdas dasdadasdasdasd"
         android:layout_marginBottom="8dp"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@color/black"
-        android:text="Reviewed by Kasehito ✅"
+        android:text="Ketegori : Komunikasi"
         android:layout_marginBottom="16dp"/>
     </LinearLayout>
 
@@ -59,7 +59,7 @@
         android:id="@+id/button_mulaiBelajar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Mulai Belajar"
+        android:text="Mulai Quiz"
         android:textAllCaps="false"
         android:background="@android:color/black"
         android:textColor="@android:color/white"

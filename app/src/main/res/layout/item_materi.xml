@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="175dp"
     android:layout_height="175dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -10,6 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
+        android:backgroundTint="@color/white"
         android:padding="10dp">
 
         <ImageView
@@ -28,5 +31,5 @@
             android:layout_height="wrap_content"/>
 
     </LinearLayout>
-
+    
 </androidx.cardview.widget.CardView>
