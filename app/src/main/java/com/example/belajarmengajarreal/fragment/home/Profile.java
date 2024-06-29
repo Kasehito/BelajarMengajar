@@ -21,7 +21,7 @@ public class Profile extends Fragment {
 
     private SharedPreferences.Editor editor;
     private Button btnLogout;
-
+  
     public Profile() {
         // Required empty public constructor
     }

@@ -18,6 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Blog extends Fragment {
+  
     private RecyclerView recyclerView;
     private BlogAdapter blogAdapter;
 
@@ -41,5 +42,11 @@ public class Blog extends Fragment {
         recyclerView.setAdapter(blogAdapter);
 
         return view;
+    }
+}
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
     }
 }

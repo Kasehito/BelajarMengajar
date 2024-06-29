@@ -2,6 +2,7 @@ package com.example.belajarmengajarreal.fragment.home;
 
 import android.os.Bundle;
 import androidx.fragment.app.Fragment;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,8 +15,6 @@ import com.example.belajarmengajarreal.models.Materi;
 import com.example.belajarmengajarreal.utils.FirebaseClient;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.snackbar.Snackbar;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
@@ -43,6 +42,7 @@ public class Home extends Fragment {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
 
         TextView tvName = view.findViewById(R.id.tvName);
+        gridView = requireView().findViewById(R.id.gridView);
 
         if (FirebaseClient.user() != null) {
             String displayName = FirebaseClient.user().getDisplayName();
@@ -54,7 +54,7 @@ public class Home extends Fragment {
         } else {
             tvName.setText("Halo, User");
         }
-
+      
         // Get list materi
         Task<QuerySnapshot> queries = FirebaseClient.data().collection("materi").get();
         queries.addOnCompleteListener(task -> {
@@ -90,4 +90,12 @@ public class Home extends Fragment {
 
         return view;
     }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+        return inflater.inflate(R.layout.fragment_home, container, false);
+    }
 }
+

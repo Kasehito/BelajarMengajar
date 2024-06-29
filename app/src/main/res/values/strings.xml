@@ -1,15 +1,17 @@
 <resources>
-    <string name="app_name">Belajar Mengajar Real</string>
+    <string name="app_name">Belajar Mengajar</string>
 
     <!--Main Activity-->
     <string name="welcome">Selamat Datang</string>
-    <string name="ready">Sudah siap menjadi guru yang baik?</string>
+    <string name="welcome2">Selamat Datang!</string>
+    <string name="ready">Siap menjadi guru yang baik?</string>
     <string name="name">Siapa namamu?</string>
     <string name="button">MULAI!</string>
     <!--Home-->
     <string name="question">Belajar apa hari ini?</string>
+
     <!--Login Page-->
-    <string name="login">Login Sebelum mulai</string>
+    <string name="login">Silahkan login sebelum memulai</string>
     <string name="username">Username</string>
     <string name="password">Password</string>
     <string name="login_button">Login"</string>

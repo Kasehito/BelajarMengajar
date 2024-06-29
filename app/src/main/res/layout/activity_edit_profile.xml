@@ -6,16 +6,19 @@
     android:layout_height="match_parent"
     tools:context=".activities.EditProfile">
 
-    <Button
+    <ImageButton
         android:id="@+id/buttonBack"
-        android:layout_width="87dp"
-        android:layout_height="30dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="30dp"
-        android:background="@drawable/back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="← Back"
+        android:backgroundTint="@color/white"
+        android:textSize="18sp"
+        android:src="@drawable/back"
+        android:textColor="@color/black"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="8dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="SpeakableTextPresentCheck" />
+        app:layout_constraintTop_toTopOf="parent"/>
 
     <TextView
         android:layout_marginStart="20dp"
