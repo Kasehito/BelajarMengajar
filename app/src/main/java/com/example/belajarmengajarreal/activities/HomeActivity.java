@@ -7,12 +7,11 @@ import androidx.fragment.app.Fragment;
 import android.os.Bundle;
 import android.view.MenuItem;
 
-import com.example.belajarmengajarreal.fragment.Blog;
-import com.example.belajarmengajarreal.fragment.Home;
-import com.example.belajarmengajarreal.fragment.Profile;
+import com.example.belajarmengajarreal.fragment.home.Blog;
+import com.example.belajarmengajarreal.fragment.home.Home;
+import com.example.belajarmengajarreal.fragment.home.Profile;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.android.material.navigation.NavigationBarView;
 import com.google.firebase.firestore.*;
 
 import com.example.belajarmengajarreal.R;
