@@ -4,13 +4,13 @@ public class Materi {
     public String judul;
     public String deskripsi;
     public String kategori;
-    public String vidio;
+    public String video;
 
-    public Materi(String judul, String deskripsi, String kategori, String vidio) {
+    public Materi(String judul, String deskripsi, String kategori, String video) {
         this.judul = judul;
         this.deskripsi = deskripsi;
         this.kategori = kategori;
-        this.vidio = vidio;
+        this.video = video;
     }
 
     public String getJudul() {
@@ -25,7 +25,11 @@ public class Materi {
         return kategori;
     }
 
-    public String getVidio() {
-        return vidio;
+    public String getVideoID() {
+        return video;
+    }
+
+    public String getVideoUrl() {
+        return "https://youtube.com/embed/" + video;
     }
 }

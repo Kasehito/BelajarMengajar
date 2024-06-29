@@ -1,19 +1,23 @@
 package com.example.belajarmengajarreal.activities;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.belajarmengajarreal.R;
 import com.example.belajarmengajarreal.utils.FirebaseClient;
+import com.google.android.material.snackbar.Snackbar;
+import com.google.firebase.FirebaseNetworkException;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
 
-public class LoginPage extends AppCompatActivity {
+public class LoginActivity extends AppCompatActivity {
 
     private static final String PREFS_NAME = "MyPrefsFile";
     private static final String PREFS_IS_LOGGED_IN = "isLoggedIn";
@@ -47,6 +51,14 @@ public class LoginPage extends AppCompatActivity {
                 // Dummy check for login credentials
                 String email = usernameEditText.getText().toString();
                 String password = passwordEditText.getText().toString();
+
+                // hide keyboard
+                View focusedView = getCurrentFocus();
+                if (focusedView != null) {
+                    InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+                    imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+                }
+
                 loginUser(email, password);
             }
         });
@@ -55,53 +67,44 @@ public class LoginPage extends AppCompatActivity {
     private void loginUser(String email, String password) {
         FirebaseClient.login(email, password)
                 .addOnCompleteListener(task -> {
-                            if (task.isSuccessful()) {
-                                goToMainActivity();
-                            } else {
-                                Toast.makeText(
-                                        LoginPage.this,
-                                        "Aldi salah masukin user nih!",
-                                        Toast.LENGTH_SHORT
-                                ).show();
-                            }
-                        });
+                    if (task.isSuccessful()) {
+                        goToMainActivity();
+                    } else {
 
-//        mAuth.signInWithEmailAndPassword(email, password)
-//                .addOnCompleteListener(this, task -> {
-//                    if (task.isSuccessful()) {
-//                        // Sign in success
-//                        FirebaseUser user = mAuth.getCurrentUser();
-//                        SharedPreferences settings = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
-//                        SharedPreferences.Editor editor = settings.edit();
-//                        editor.putBoolean(PREFS_IS_LOGGED_IN, true);
-//                        editor.apply();
-//
-//                        goToMainActivity();
-//                    } else {
-//                        // If sign in fails, display a message to the user.
-//                        Toast.makeText(LoginPage.this, "Authentication Failed.", Toast.LENGTH_SHORT).show();
-//                    }
-//                });
+                        if (task.getException() instanceof FirebaseAuthInvalidCredentialsException) {
+                            Snackbar.make(
+                                    findViewById(android.R.id.content),
+                                    "Email atau password salah!",
+                                    Snackbar.LENGTH_LONG
+                            ).show();
+                            return;
+                        }
+
+                        if (task.getException() instanceof FirebaseNetworkException) {
+                            Snackbar.make(
+                                    findViewById(android.R.id.content),
+                                    "Tidak ada koneksi internet!",
+                                    Snackbar.LENGTH_LONG
+                            ).show();
+                            return;
+                        }
+
+                        task.getException().printStackTrace();
+                        Snackbar.make(
+                                findViewById(android.R.id.content),
+                                "Terjadi kesalahan!",
+                                Snackbar.LENGTH_LONG
+                        ).show();
+                    }
+                });
     }
-//                  :3
-////                Nanti ada password sama username disini ya nevun (nev: fak u)
-//                if (username.equals("user") && password.equals("password")) {
-//                    SharedPreferences settings = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
-//                    SharedPreferences.Editor editor = settings.edit();
-//                    editor.putBoolean(PREFS_IS_LOGGED_IN, true);
-//                    editor.apply();
-//
-//                    goToMainActivity();
-//                } else {
-//                    // Show login error
-//                }
     private void goToMainActivity() {
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
         finish();
     }
     private void goToSignUpActivity() {
-        Intent intent = new Intent(this, Signup.class);
+        Intent intent = new Intent(this, RegisterActivity.class);
         startActivity(intent);
         finish();
     }

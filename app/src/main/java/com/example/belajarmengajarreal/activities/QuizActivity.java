@@ -6,11 +6,11 @@ import android.os.Bundle;
 
 import com.example.belajarmengajarreal.R;
 
-public class SkorNilai extends AppCompatActivity {
+public class QuizActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_skor_nilai);
+        setContentView(R.layout.activity_quiz);
     }
 }

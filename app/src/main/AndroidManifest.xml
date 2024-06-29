@@ -18,19 +18,19 @@
             android:name=".activities.MateriActivity"
             android:exported="false" />
         <activity
-            android:name=".activities.SkorNilai"
+            android:name=".activities.ScoreActivity"
             android:exported="false" />
         <activity
-            android:name=".activities.Quiz"
+            android:name=".activities.QuizActivity"
             android:exported="false" />
         <activity
-            android:name=".activities.Signup"
+            android:name=".activities.RegisterActivity"
             android:exported="false" />
         <activity
             android:name=".activities.EditProfile"
             android:exported="false" />
         <activity
-            android:name=".activities.LoginPage"
+            android:name=".activities.LoginActivity"
             android:exported="false" />
         <activity
             android:name=".activities.SplashScreen"

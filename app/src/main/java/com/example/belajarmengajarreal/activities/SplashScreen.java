@@ -3,8 +3,10 @@ package com.example.belajarmengajarreal.activities;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.interpolator.view.animation.FastOutSlowInInterpolator;
 
 import com.example.belajarmengajarreal.R;
 import com.example.belajarmengajarreal.utils.FirebaseClient;
@@ -17,6 +19,17 @@ public class SplashScreen extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_screen);
+
+        // Logo animation
+        ImageView logo = findViewById(R.id.logo);
+        logo.setAlpha(0f); logo.setScaleX(0.9f); logo.setScaleY(0.9f);
+        logo.animate()
+                .alpha(1f)
+                .scaleX(1f)
+                .scaleY(1f)
+                .setInterpolator(new FastOutSlowInInterpolator())
+                .setDuration(1000)
+                .start();
 
         new Handler().postDelayed(new Runnable() {
             @Override
@@ -39,7 +52,7 @@ public class SplashScreen extends AppCompatActivity {
     }
 
     private void goToLoginActivity() {
-        Intent intent = new Intent(this, LoginPage.class);
+        Intent intent = new Intent(this, LoginActivity.class);
         startActivity(intent);
         finish();
     }
