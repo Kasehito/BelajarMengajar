@@ -41,4 +41,13 @@ public class Materi {
     public String getVideoUrl() {
         return "https://youtube.com/embed/" + video;
     }
+
+    public String getVideoEmbed() {
+        return "<iframe width=\"100%\" height=\"100%\" src=\"" + getVideoUrl() + "\" title=\"" + getJudul() + "\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" referrerpolicy=\"strict-origin-when-cross-origin\" allowfullscreen></iframe>";
+    }
+
+    public String getThumbnail() {
+        // https://i1.ytimg.com/vi/8o5zBn1NwPA/hqdefault.jpg
+        return "https://i1.ytimg.com/vi/" + getVideoID() + "/hqdefault.jpg";
+    }
 }

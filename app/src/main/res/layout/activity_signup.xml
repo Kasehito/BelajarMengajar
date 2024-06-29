@@ -48,7 +48,7 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/textView4"
                 android:textColor="?attr/colorPrimary"
-                android:text="@string/login"
+                android:text="Silahkan Daftar"
                 android:textSize="18sp"
                 android:layout_marginBottom="20dp" />
 
@@ -76,16 +76,6 @@
                 android:paddingVertical="18dp"
                 android:backgroundTint="@color/black"
                 android:text="@string/login_signUp"
-                android:textColor="?attr/colorSecondary" />
-
-            <Button
-                android:id="@+id/button_login_page"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingHorizontal="32dp"
-                android:paddingVertical="18dp"
-                android:backgroundTint="@color/black"
-                android:text="@string/login_button"
                 android:textColor="?attr/colorSecondary" />
 
         </LinearLayout>

@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragment.home.Profile">
+    tools:context=".fragment.Profile">
 
     <!-- TODO: Update blank fragment layout -->
     <LinearLayout
@@ -16,7 +16,7 @@
             android:id="@+id/logo"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
-            android:src="@drawable/logo_2"/>
+            android:src="@drawable/logo_text_horizon"/>
 
         <ImageView
             android:layout_width="match_parent"

@@ -30,7 +30,7 @@ public class LoginActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
 
         if (mAuth.getCurrentUser() != null) {
-            goToMainActivity();
+            goToHomeActivity();
         }
 
         final EditText usernameEditText = findViewById(R.id.etUsername);
@@ -68,7 +68,7 @@ public class LoginActivity extends AppCompatActivity {
         FirebaseClient.login(email, password)
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
-                        goToMainActivity();
+                        goToHomeActivity();
                     } else {
 
                         if (task.getException() instanceof FirebaseAuthInvalidCredentialsException) {
@@ -98,8 +98,8 @@ public class LoginActivity extends AppCompatActivity {
                     }
                 });
     }
-    private void goToMainActivity() {
-        Intent intent = new Intent(this, MainActivity.class);
+    private void goToHomeActivity() {
+        Intent intent = new Intent(this, HomeActivity.class);
         startActivity(intent);
         finish();
     }
