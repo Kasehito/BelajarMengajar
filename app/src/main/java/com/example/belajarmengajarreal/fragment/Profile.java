@@ -1,46 +1,40 @@
 package com.example.belajarmengajarreal.fragment;
 
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
-
 import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.TextView;
 
 import com.example.belajarmengajarreal.R;
-
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link Profile#newInstance} factory method to
- * create an instance of this fragment.
- */
-
+import com.example.belajarmengajarreal.activities.EditProfile;
+import com.example.belajarmengajarreal.activities.LoginPage;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class Profile extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
-    // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+
+    private FirebaseAuth mAuth;
+    private FirebaseUser currentUser;
+
+    private SharedPreferences.Editor editor;
+
+    private Button btnLogout;
 
     public Profile() {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment Profile.
-     */
-    // TODO: Rename and change types and number of parameters
     public static Profile newInstance(String param1, String param2) {
         Profile fragment = new Profile();
         Bundle args = new Bundle();
@@ -57,12 +51,61 @@ public class Profile extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+
+        mAuth = FirebaseAuth.getInstance();
+        currentUser = mAuth.getCurrentUser();
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_profile, container, false);
+        View view = inflater.inflate(R.layout.fragment_profile, container, false);
+
+        // Find the Edit Profile button
+        Button editProfileButton = view.findViewById(R.id.buttonEdit);
+
+        // Set an OnClickListener to navigate to the Edit Profile activity
+        editProfileButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), EditProfile.class);
+                startActivity(intent);
+            }
+        });
+
+        // Find the TextView for displaying the greeting
+        TextView greetingTextViewUp = view.findViewById(R.id.tvNameAtas);
+        TextView greetingTextViewDown = view.findViewById(R.id.tvNameBawah);
+
+        // Set the greeting text
+        if (currentUser != null) {
+            String displayName = currentUser.getDisplayName();
+            if (displayName != null && !displayName.isEmpty()) {
+                greetingTextViewUp.setText("Halo, " + displayName+" 👋");
+                greetingTextViewDown.setText(displayName);
+            } else {
+                greetingTextViewDown.setText("Halo, User 👋");
+                greetingTextViewUp.setText("User");
+            }
+        } else {
+            greetingTextViewUp.setText("Halo, User");
+            greetingTextViewDown.setText("User");
+        }
+
+        btnLogout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Remove username from SharedPreferences
+                editor.remove("username");
+                editor.apply();
+
+                // Start MainActivity and finish current activity
+                Intent intent = new Intent(requireActivity(), LoginPage.class);
+                startActivity(intent);
+                requireActivity().finish();
+            }
+        });
+
+        return view;
     }
 }

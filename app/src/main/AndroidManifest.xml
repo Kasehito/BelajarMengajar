@@ -15,6 +15,9 @@
         android:theme="@style/Theme.BelajarMengajarReal"
         tools:targetApi="31">
         <activity
+            android:name=".activities.Blogger"
+            android:exported="false" />
+        <activity
             android:name=".activities.MateriActivity"
             android:exported="false" />
         <activity

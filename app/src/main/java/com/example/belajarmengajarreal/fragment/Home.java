@@ -1,62 +1,60 @@
 package com.example.belajarmengajarreal.fragment;
 
 import android.os.Bundle;
-
 import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.GridView;
+import android.widget.TextView;
 
 import com.example.belajarmengajarreal.R;
-
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class Home extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    private FirebaseAuth mAuth;
+    private FirebaseUser currentUser;
 
     public Home() {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment Home.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static Home newInstance(String param1, String param2) {
-        Home fragment = new Home();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
+        mAuth = FirebaseAuth.getInstance();
+        currentUser = mAuth.getCurrentUser();
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_home, container, false);
+        View view = inflater.inflate(R.layout.fragment_home, container, false);
+
+        TextView tvName = view.findViewById(R.id.tvName);
+
+        if (currentUser != null) {
+            String displayName = currentUser.getDisplayName();
+            if (displayName != null && !displayName.isEmpty()) {
+                tvName.setText("Halo, " + displayName + " 👋");
+            } else {
+                tvName.setText("Halo, User 👋");
+            }
+        } else {
+            tvName.setText("Halo, User");
+        }
+
+        GridView gridView = view.findViewById(R.id.gridView);
+        String[] titles = {"Public Speaking", "Teaching Techniques", "Classroom Management", "Student Motivation"};
+        int[] images = {R.drawable.frame_1, R.drawable.frame_2, R.drawable.frame_3, R.drawable.jeki_sayang}; // Add your drawable images
+
+        com.example.belajarmengajarreal.fragment.GridAdapter gridAdapter = new com.example.belajarmengajarreal.fragment.GridAdapter(getContext(), titles, images);
+        gridView.setAdapter(gridAdapter);
+
+        return view;
     }
 }
