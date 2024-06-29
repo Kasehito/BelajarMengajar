@@ -4,11 +4,13 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Button;
+import android.widget.ImageButton;
 
 import com.example.belajarmengajarreal.R;
 import com.example.belajarmengajarreal.models.Materi;
@@ -27,6 +29,14 @@ public class MateriActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_materi);
+
+        ImageButton btnBack = findViewById(R.id.buttonBack);
+        btnBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
         String materi_id = getIntent().getStringExtra("materi_id");
         FirebaseClient.data().collection("materi").get()
@@ -57,21 +67,20 @@ public class MateriActivity extends AppCompatActivity {
                 });
 
         webView = findViewById(R.id.webView);
-
-        Button mulaiQuizButton = findViewById(R.id.button_mulaiBelajar);
-        mulaiQuizButton.setOnClickListener(v -> {
-            Intent intent = new Intent(MateriActivity.this, QuizActivity.class);
-            startActivity(intent);
-        });
+//
+//        Button mulaiQuizButton = findViewById(R.id.button_mulaiBelajar);
+//        mulaiQuizButton.setOnClickListener(v -> {
+//            Intent intent = new Intent(MateriActivity.this, QuizActivity.class);
+//            startActivity(intent);
+//        });
 
     }
 
     private void setupWebView(Materi materi) {
-        webView.setWebViewClient(new WebViewClient());
-        webView.setWebChromeClient(new WebChromeClient());
         WebSettings webSettings = webView.getSettings();
         webSettings.setJavaScriptEnabled(true);
         webSettings.setDomStorageEnabled(true);
         webView.loadData(materi.getVideoEmbed(), "text/html", "utf-8");
+        webView.setWebViewClient(new WebViewClient());
     }
 }

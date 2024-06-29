@@ -32,9 +32,9 @@ public class SplashScreen extends AppCompatActivity {
                 .setDuration(1000)
                 .start();
 
-        for (int i = 0; i < 10; i++) {
-            Toast.makeText(logo.getContext(), "Aldi sepuh", Toast.LENGTH_LONG).show();
-        }
+//        for (int i = 0; i < 10; i++) {
+//            Toast.makeText(logo.getContext(), "Aldi sepuh", Toast.LENGTH_LONG).show();
+//        }
 
         new Handler().postDelayed(new Runnable() {
             @Override

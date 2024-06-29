@@ -81,7 +81,6 @@ public class GridAdapter extends BaseAdapter {
 
             Glide.with(convertView.getContext())
                     .load(materi.getThumbnail())
-                    .placeholder(convertView.getResources().getDrawable(R.drawable.jeki_sayang))
                     .into(imageView);
             textView.setText(materi.getJudul());
         }
