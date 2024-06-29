@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/wave"
     tools:context=".activities.Signup">
 
     <androidx.cardview.widget.CardView
@@ -25,12 +26,11 @@
             android:paddingHorizontal="30dp">
 
             <ImageView
-                android:id="@+id/imageView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:layout_constraintEnd_toEndOf="parent"
+                android:id="@+id/logo"
+                android:layout_width="144dp"
+                android:layout_height="36dp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:srcCompat="@drawable/logo_1"
+                app:srcCompat="@drawable/logo_text_horizon"
                 tools:layout_editor_absoluteY="143dp" />
 
             <TextView
@@ -38,23 +38,31 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/textView"
                 android:textColor="?attr/colorPrimary"
-                android:text="@string/login"
+                android:text="@string/welcome2"
                 android:layout_marginTop="10dp"
-                android:textSize="30sp"
-                android:textStyle="bold"
-                android:layout_marginBottom="20dp"/>
+                android:textSize="32sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView4"
+                android:textColor="?attr/colorPrimary"
+                android:text="@string/login"
+                android:textSize="18sp"
+                android:layout_marginBottom="20dp" />
 
             <EditText
                 android:id="@+id/etUsername"
                 android:textSize="20sp"
-                android:layout_width="200dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/username"/>
+                android:hint="@string/username" />
 
             <EditText
                 android:id="@+id/etPassword"
                 android:textSize="20sp"
-                android:layout_width="200dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/password"/>
 
@@ -62,16 +70,20 @@
                 android:id="@+id/button_signUp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:paddingHorizontal="32dp"
+                android:paddingVertical="18dp"
+                android:backgroundTint="@color/black"
                 android:text="@string/login_signUp"
-                android:textColor="?attr/colorSecondary"
-                android:backgroundTint="?attr/colorPrimary"
-                />
+                android:textColor="?attr/colorSecondary" />
 
             <Button
                 android:id="@+id/button_login_page"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:backgroundTint="?attr/colorPrimary"
+                android:paddingHorizontal="32dp"
+                android:paddingVertical="18dp"
+                android:backgroundTint="@color/black"
                 android:text="@string/login_button"
                 android:textColor="?attr/colorSecondary" />
 

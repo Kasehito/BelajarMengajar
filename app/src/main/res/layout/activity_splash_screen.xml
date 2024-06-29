@@ -8,18 +8,9 @@
     android:id="@+id/splashScreen">
 
     <ImageView
+        android:id="@+id/logo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/logo_1"/>
-
-    <TextView
-        android:id="@+id/txtInfoLogin"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:text="Loading....."
-        android:textSize="20sp"
-        android:textStyle="bold"
-        android:layout_gravity="center"/>
 
 </LinearLayout>
