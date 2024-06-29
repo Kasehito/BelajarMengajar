@@ -9,13 +9,22 @@ import android.widget.GridView;
 import android.widget.TextView;
 
 import com.example.belajarmengajarreal.R;
+import com.example.belajarmengajarreal.fragment.GridAdapter;
+import com.example.belajarmengajarreal.models.Materi;
+import com.example.belajarmengajarreal.utils.FirebaseClient;
+import com.google.android.gms.tasks.Task;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
+
+import java.util.List;
 
 public class Home extends Fragment {
 
-    private FirebaseAuth mAuth;
-    private FirebaseUser currentUser;
+    List<Materi> materi;
+    GridView gridView;
 
     public Home() {
         // Required empty public constructor
@@ -24,8 +33,6 @@ public class Home extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mAuth = FirebaseAuth.getInstance();
-        currentUser = mAuth.getCurrentUser();
     }
 
     @Override
@@ -37,8 +44,8 @@ public class Home extends Fragment {
 
         TextView tvName = view.findViewById(R.id.tvName);
 
-        if (currentUser != null) {
-            String displayName = currentUser.getDisplayName();
+        if (FirebaseClient.user() != null) {
+            String displayName = FirebaseClient.user().getDisplayName();
             if (displayName != null && !displayName.isEmpty()) {
                 tvName.setText("Halo, " + displayName + " 👋");
             } else {
@@ -48,11 +55,37 @@ public class Home extends Fragment {
             tvName.setText("Halo, User");
         }
 
+        // Get list materi
+        Task<QuerySnapshot> queries = FirebaseClient.data().collection("materi").get();
+        queries.addOnCompleteListener(task -> {
+            if (task.isSuccessful()) {
+                for (QueryDocumentSnapshot doc : task.getResult()) {
+                    materi.add(Materi.create(
+                            doc.getId(),
+                            doc.getString("title"),
+                            doc.getString("description"),
+                            doc.getString("content"),
+                            doc.getString("image")
+                    ));
+                }
+            } else {
+                if (task.getException() != null) {
+                    task.getException().printStackTrace();
+                }
+
+                Snackbar.make(
+                        requireView(),
+                        "Failed to get materi.",
+                        Snackbar.LENGTH_LONG
+                ).show();
+            }
+        });
+
         GridView gridView = view.findViewById(R.id.gridView);
         String[] titles = {"Public Speaking", "Teaching Techniques", "Classroom Management", "Student Motivation"};
         int[] images = {R.drawable.frame_1, R.drawable.frame_2, R.drawable.frame_3, R.drawable.jeki_sayang}; // Add your drawable images
 
-        com.example.belajarmengajarreal.fragment.GridAdapter gridAdapter = new com.example.belajarmengajarreal.fragment.GridAdapter(getContext(), titles, images);
+        GridAdapter gridAdapter = new GridAdapter(requireContext(), titles, images);
         gridView.setAdapter(gridAdapter);
 
         return view;

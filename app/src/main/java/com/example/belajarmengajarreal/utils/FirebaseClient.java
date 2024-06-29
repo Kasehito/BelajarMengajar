@@ -24,6 +24,14 @@ public class FirebaseClient {
         return auth().signInWithEmailAndPassword(email, password);
     }
 
+    public static Task<AuthResult> register(String email, String password) {
+        return auth().createUserWithEmailAndPassword(email, password);
+    }
+
+    public static void logout() {
+        auth().signOut();
+    }
+
     public static FirebaseFirestore data() { return FirebaseFirestore.getInstance(); }
 
 }

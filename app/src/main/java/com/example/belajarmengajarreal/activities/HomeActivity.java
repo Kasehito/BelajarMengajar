@@ -12,6 +12,10 @@ import com.example.belajarmengajarreal.fragment.home.Home;
 import com.example.belajarmengajarreal.fragment.home.Profile;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.example.belajarmengajarreal.models.Materi;
+import com.example.belajarmengajarreal.utils.FirebaseClient;
+import com.google.android.gms.tasks.Task;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.firestore.*;
 
 import com.example.belajarmengajarreal.R;
