@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.interpolator.view.animation.FastOutSlowInInterpolator;
@@ -30,6 +31,10 @@ public class SplashScreen extends AppCompatActivity {
                 .setInterpolator(new FastOutSlowInInterpolator())
                 .setDuration(1000)
                 .start();
+
+        for (int i = 0; i < 10; i++) {
+            Toast.makeText(logo.getContext(), "Aldi sepuh", Toast.LENGTH_LONG).show();
+        }
 
         new Handler().postDelayed(new Runnable() {
             @Override

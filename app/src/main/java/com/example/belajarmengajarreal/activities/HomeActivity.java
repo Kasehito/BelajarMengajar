@@ -6,22 +6,13 @@ import androidx.fragment.app.Fragment;
 
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.widget.GridView;
 
-import com.example.belajarmengajarreal.fragment.home.Blog;
-import com.example.belajarmengajarreal.fragment.home.Home;
-import com.example.belajarmengajarreal.fragment.home.Profile;
-import com.google.android.gms.tasks.Task;
+import com.example.belajarmengajarreal.fragment.Blog;
+import com.example.belajarmengajarreal.fragment.Home;
+import com.example.belajarmengajarreal.fragment.Profile;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.example.belajarmengajarreal.models.Materi;
-import com.example.belajarmengajarreal.utils.FirebaseClient;
-import com.google.android.gms.tasks.Task;
-import com.google.android.material.snackbar.Snackbar;
-import com.google.firebase.firestore.*;
 
 import com.example.belajarmengajarreal.R;
-
-import java.util.List;
 
 
 public class HomeActivity extends AppCompatActivity {
@@ -65,4 +56,3 @@ public class HomeActivity extends AppCompatActivity {
                 }
             };
     }
-}

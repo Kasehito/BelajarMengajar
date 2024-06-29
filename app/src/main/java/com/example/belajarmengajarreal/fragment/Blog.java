@@ -1,4 +1,4 @@
-package com.example.belajarmengajarreal.fragment.home;
+package com.example.belajarmengajarreal.fragment;
 
 import android.os.Bundle;
 
@@ -43,7 +43,7 @@ public class Blog extends Fragment {
 
         return view;
     }
-}
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {

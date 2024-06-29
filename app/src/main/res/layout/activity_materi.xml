@@ -3,6 +3,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container"
     android:orientation="vertical"
     android:padding="16dp">
 
@@ -24,12 +26,11 @@
         android:textSize="18sp"
         android:layout_marginBottom="16dp"/>
 
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:scaleType="centerCrop"
-        android:src="@drawable/jeki_sayang"
-        android:layout_marginBottom="16dp"/>
+        <WebView
+            android:id="@+id/webView"
+            android:layout_width="match_parent"
+            android:layout_height="200sp"
+            tools:ignore="WebViewLayout" />
 
     <TextView
         android:layout_width="wrap_content"

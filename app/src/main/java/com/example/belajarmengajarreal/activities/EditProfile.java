@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.belajarmengajarreal.R;
@@ -15,12 +14,13 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserProfileChangeRequest;
+import android.widget.ImageButton;
 
 public class EditProfile extends AppCompatActivity {
 
     private EditText editTextName, editTextPassword;
     private Button buttonSave;
-    private TextView backButton;
+    private ImageButton backButton; // Change to ImageButton
     private FirebaseAuth mAuth;
     private FirebaseUser currentUser;
 
@@ -32,13 +32,11 @@ public class EditProfile extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         currentUser = mAuth.getCurrentUser();
 
-        // Initialize views
         editTextName = findViewById(R.id.etName);
         editTextPassword = findViewById(R.id.etPassword);
         buttonSave = findViewById(R.id.buttonSave);
         backButton = findViewById(R.id.buttonBack);
 
-        // Set click listener for save button
         buttonSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -46,11 +44,10 @@ public class EditProfile extends AppCompatActivity {
             }
         });
 
-        // Set click listener for back button
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                finish(); // Close this activity and return to the previous one
+                finish();
             }
         });
 

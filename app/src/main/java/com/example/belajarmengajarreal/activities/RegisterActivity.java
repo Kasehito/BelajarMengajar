@@ -31,14 +31,6 @@ public class RegisterActivity extends AppCompatActivity {
         final EditText emailEditText = findViewById(R.id.etUsername);
         final EditText passwordEditText = findViewById(R.id.etPassword);
         Button signUpButton = findViewById(R.id.button_signUp);
-        Button login = findViewById(R.id.button_login_page);
-
-        login.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-             goToLoginActivity();
-            }
-        });
 
         signUpButton.setOnClickListener(new View.OnClickListener() {
             @Override

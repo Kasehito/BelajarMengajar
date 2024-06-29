@@ -5,12 +5,14 @@ public class QuizModel {
     public String jawaban1;
     public String jawaban2;
     public String jawaban3;
+    public int jawabanBenar = 0;
 
-    public  QuizModel(String soal,String jawaban1,String jawaban2,String jawaban3){
+    public  QuizModel(String soal,String jawaban1,String jawaban2,String jawaban3, int jawabanBenar){
         this.soal = soal;
         this.jawaban1 = jawaban1;
         this.jawaban2 = jawaban2;
         this.jawaban3 = jawaban3;
+        this.jawabanBenar = jawabanBenar;
     }
 
     public String getSoal() {
@@ -28,4 +30,9 @@ public class QuizModel {
     public String getJawaban3() {
         return jawaban3;
     }
+
+    public int getJawabanBenar() {
+        return jawabanBenar;
+    }
+
 }
