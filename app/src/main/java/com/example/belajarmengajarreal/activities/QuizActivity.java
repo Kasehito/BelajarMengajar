@@ -1,6 +1,7 @@
 package com.example.belajarmengajarreal.activities;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
@@ -10,6 +11,9 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.belajarmengajarreal.R;
 import com.example.belajarmengajarreal.models.QuizModel;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,8 +31,15 @@ public class QuizActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz);
 
-        // Initialize UI components
         ImageButton btnBack = findViewById(R.id.buttonBack);
+        btnBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
+        // Initialize UI components
         TxtSoal = findViewById(R.id.Txt_soal);
         radioGroup = findViewById(R.id.radioGroup);
         PilihanA = findViewById(R.id.PilihanA);
@@ -66,10 +77,24 @@ public class QuizActivity extends AppCompatActivity {
     }
 
     private void loadQuizQuestions() {
-        // Example questions
-        quizList.add(new QuizModel("Question 1", "Option A", "Option B", "Option C", 1));
-        quizList.add(new QuizModel("Question 2", "Option A", "Option B", "Option C", 2));
-        // Add more questions as needed
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        db.collection("quizQuestions").get().addOnCompleteListener(task -> {
+            if (task.isSuccessful()) {
+                for (QueryDocumentSnapshot document : task.getResult()) {
+                    String question = document.getString("question");
+                    String optionA = document.getString("optionA");
+                    String optionB = document.getString("optionB");
+                    String optionC = document.getString("optionC");
+                    int correctAnswer = document.getLong("correctAnswer").intValue();
+                    quizList.add(new QuizModel(question, optionA, optionB, optionC, correctAnswer));
+                }
+                if (!quizList.isEmpty()) {
+                    displayQuestion(currentQuestionIndex);
+                }
+            } else {
+                Log.w("QuizActivity", "Error getting documents.", task.getException());
+            }
+        });
     }
 
     private void displayQuestion(int index) {

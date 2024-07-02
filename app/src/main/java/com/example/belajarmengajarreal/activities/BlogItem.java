@@ -11,6 +11,9 @@ public class BlogItem {
         this.imageResourceId = imageResourceId;
     }
 
+    public BlogItem(String title, String description, String imageUrl) {
+    }
+
     public String getTitle() {
         return title;
     }
